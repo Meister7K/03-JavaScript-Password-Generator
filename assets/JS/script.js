@@ -7,7 +7,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  // return document.getElementById(password).append.innerHTML.password
 };
 
 function generatePassword() {
@@ -36,21 +36,26 @@ function generatePassword() {
 
  if(addLowercase) {
   charset += lowercaseCharset;
-  passwordText += lowercaseCharset(Math.floor(Math.random() * lowercaseCharset.length));
+  passwordText += lowercaseCharset.charAt(Math.floor(Math.random() * lowercaseCharset.length));
  }
  if(addUppercase){
   charset += uppercaseCharset;
-  passwordText += uppercaseCharset(Math.floor(Math.random() * uppercaseCharset.length));
+  passwordText += uppercaseCharset.charAt(Math.floor(Math.random() * uppercaseCharset.length));
  }
  if(addNumbers){
   charset += numberCharset;
-  passwordText += numberCharset(Math.floor(Math.random() * numberCharset.length));
+  passwordText += numberCharset.charAt(Math.floor(Math.random() * numberCharset.length));
  }
  if(addSpecial){
   charset += specialCharset;
-  passwordText += specialCharset(Math.floor(Math.random() * specialCharset.length));
+  passwordText += specialCharset.charAt(Math.floor(Math.random() * specialCharset.length));
+ }
+ for (var i = passwordText.length - 1; i < passwordLength; i++ ){
+  passwordText += charset.charAt(Math.floor(Math.random() * charset.length));
  }
 
+ console.log(passwordText);
+ console.log(charset)
  return passwordText;
 };
 // Add event listener to generate button
