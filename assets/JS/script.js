@@ -12,12 +12,13 @@ function writePassword() {
 
 function generatePassword() {
  var passwordLength = prompt("How many characters would you like your password to be? (between 8-128)");
- if (passwordLength < 8 || passwordLength > 128) {
-  alert("Password length must be a number between 8 and 128");
+ if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+  alert("Password length must be a NUMBER between 8 and 128");
   console.log(passwordLength);
   return "";
  }
 
+//  
  var addLowercase = confirm("Would you like to add lowercase characters?");
  var addUppercase = confirm("Would you like to add UPPERCASE characters?");
  var addNumbers = confirm("W0u1d y0u 1ik3 t0 add numb3r character5?");
@@ -29,11 +30,14 @@ function generatePassword() {
  var passwordText = "";
  var charset = "";
 
+
+//  alert of failed char selection
  if (!addLowercase && !addUppercase && !addNumbers && !addSpecial) {
   alert(" You must choose at least one character type to continue");
   return "";
  }
 
+//  code for choosing random characters from charset based on input
  if(addLowercase) {
   charset += lowercaseCharset;
   passwordText += lowercaseCharset.charAt(Math.floor(Math.random() * lowercaseCharset.length));
@@ -50,7 +54,9 @@ function generatePassword() {
   charset += specialCharset;
   passwordText += specialCharset.charAt(Math.floor(Math.random() * specialCharset.length));
  }
- for (var i = passwordText.length - 1; i < passwordLength; i++ ){
+
+//  for loop to randomize each character/charset in character length 
+ for (var i = passwordText.length; i < passwordLength; i++ ){
   passwordText += charset.charAt(Math.floor(Math.random() * charset.length));
  }
 
